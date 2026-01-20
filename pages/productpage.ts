@@ -1,13 +1,21 @@
 import { productpagelocators } from "../enum/selectors";
-import {Page ,expect} from '@playwright/test';
-export class productpage{
-    constructor(private page:Page){}
+import { Page, expect } from '@playwright/test';
+export class productpage {
+    constructor(private page: Page) { }
 
-    async pageisvisible(){
+    async pageisvisible() {
         await expect(this.page.locator(productpagelocators.title)).toBeVisible();
     }
 
-    async productscount(){
+    async productscount() {
         await expect(this.page.locator(productpagelocators.inventory)).toHaveCount(6);
     }
+
+    async addBackpackToCart() {
+        await this.page.click(productpagelocators.ADD_BACKPACK);
+    }
+
+    async checkcartcount(count: number) {
+    await expect(this.page.locator(productpagelocators.CART_BADGE)).toHaveText(count.toString());
+  }
 }
