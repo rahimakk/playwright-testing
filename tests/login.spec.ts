@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
 import { loginpage } from '../pages/loginpage';
 
-test.describe('Login Tests', () => {
+test.describe('@regression Login Tests', () => {
   test('valid login', async ({ page }) => {
     const login = new loginpage(page);
     await login.navigate();
